@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+    // Если компонент простой (состоит из одного метода render), то можно записать в упрощенном виде, через function
+    function Div (props) {
+        return (
+            // props.children - это все что передали между тегами <Div> ... </Div>
+            <div>
+                {props.children}
+            </div>
+        )
+    }
+
+    function H1 (props) {
+        // Получаема переданые стили и дополняем их своими
+        const style = props.style || {}
+        style.fontStyle = 'italic'
+
+        // Стилизуем h1 и выводим вложенный текст
+        return (
+            <h1 style={style}>{props.children}</h1>
+        )
+    }
+
+    function A (props) {
+        const link = props.link
+
+        return (
+            <a href={link + '#qwe'}>
+                Link ReactJS!!!
+            </a>
+        )
+    }
+
+    class MyButton extends React.Component {
+
+        constructor (props) {
+            super (props)
+            // .bind() позволяет сохранить this, вне зависимости от контекста, в котором он будет вызываться
+            this.clickHandler = this.clickHandler.bind(this)
+            // * есть упрощенная запись, при которой не нужно прописывать bind в конструкторе
+        }
+
+        clickHandler () {
+            // Как мы увидим, this сохранен
+            alert(this.props.msg)
+        }
+
+        render () {
+            return <button type="button" onClick={this.clickHandler}>{this.props.children}</button>
+            // Можно еще было сделать так, т.е. в каждом рендере будет создаваться новая функция, замкнутая на текущий контекст
+            // return <button type="button" onClick={()=>{this.clickHandler()}}>{this.props.children}</button>
+        }
+
+    }
+
+    ReactDOM.render(
+        <Div>
+            <H1 style={{color:"red"}}>Hello, world!</H1>
+            <A link="index.html">Link</A>
+            <MyButton msg="Yo!">Жмякни меня</MyButton>
+        </Div>,
+        document.getElementById('root')
+    );
+
+</script>
+</body>
+</html>
