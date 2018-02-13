@@ -2,17 +2,26 @@ import React, { Component, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 
-export class Video extends Component {
+export class Input extends Component {
 
-    static propTypes = {}
+    static propTypes = {
+        value: PropTypes.string.isRequired,
+        arr: PropTypes.arrayOf(PropTypes.string),
+    }
 
     static defaultProps = {}
 
     state = {}
 
+    constructor(props, context){
+        super(props, context)
+    }
     componentWillMount() {}
     // render
-    componentDidMount() {}
+    clickHandler = e => {}
+    componentDidMount() {
+        $('#input').on('click', this.clickHandler)
+    }
 
     componentWillReceiveProps(nextProps) {}
     shouldComponentUpdate(nextProps, nextState) {}
@@ -20,7 +29,10 @@ export class Video extends Component {
     // render
     componentDidUpdate(prevProps, prevState) {}
 
-    componentWillUnmount() {}
+    componentWillUnmount() {
+        q.r.t=1
+        $('#input').off('click', this.clickHandler)
+    }
 
     componentDidCatch(error, info) {}
 

@@ -131,34 +131,3 @@ export class Calc extends Component {
     }
 
 }
-
-class A {
-    name = 'A'
-    f1 = function () {
-        console.log(this)
-    }
-    f2 = () => {
-        console.log(this)
-    }
-}
-const a = new A()
-
-a.f1(); // { name: 'A', f1, f2 }
-a.f2(); // { name: 'A', f1, f2 }
-
-const foo1 = a.f1
-const foo1_ = a.f1.bind(a)
-const foo2 = a.f2
-
-foo1() // null
-foo1.call(a) // { name: 'A', f1, f2 }
-foo1_() // { name: 'A', f1, f2 }
-foo2() // { name: 'A', f1, f2 }
-
-function bind(f, a) {
-    return function () {
-        f.call(a)
-    }
-}
-
-const _f = bind(a.f1, a)
