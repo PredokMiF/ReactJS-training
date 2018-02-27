@@ -2,68 +2,40 @@
 // Минусы: сложно понять и принять концепцию экшенов и редъюсеров, пного писанины с AC и редъюсерами
 
 
-class Store {
-
-    constructor(defState){
-        this.state = defState
-    }
-
-    addElement(id, text, done = false) {
-        this.state = Object.assign({}, this.state)
-        this.state.list = this.state.list.slice()
-        this.state.list.push({ id, text, done })
-    }
-
-    getState(){
-        return this.state
-    }
-}
-
-const store = new Store({
-    list: [
-        { id: 1, text: 'Yo!', done: false },
-        { id: 2, text: 'Vasiliy', done: false },
-    ]
-})
-
-store.addElement(3, 'Vasiliy3')
-
-console.log(JSON.stringify(store.getState(), null, 4))
-
-
 const ADD_ITEM = 'ADD_ITEM'
 
 class Store {
 
     constructor(defState){
-        this.store = defState
-
-        // Пока события нам не нужны
-        // this.handlers = []
+        this.state = defState
+        this.handlers = []
     }
 
     dispatch(action) {
         switch (action.type) {
             case ADD_ITEM:
-                this.store = Object.assign({}, this.store)
-                this.store.list = this.store.list.slice()
-                this.store.list.push(action.payload)
-                // this.handlers.forEach(cb => cb())
+                this.state = Object.assign({}, this.state)
+                this.state.list = this.state.list.slice()
+                this.state.list.push(action.payload)
+                this.handlers.forEach(cb => cb())
                 break
         }
     }
 
     getState(){
-        return this.store
+        return this.state
     }
 
-    // on(cb) {
-    //     this.handlers.push(cb)
-    // }
-    //
-    // off(cb) {
-    //     // ToDo
-    // }
+    on(cb) {
+        this.handlers.push(cb)
+    }
+
+    off(cb) {
+        const i = this.handlers.indexOf(cb)
+        if (i >= 0) {
+            this.handlers.splice(i, 1)
+        }
+    }
 
 }
 

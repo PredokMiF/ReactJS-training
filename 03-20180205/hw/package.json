@@ -5,5 +5,7 @@
     "build": "webpack",
     "build-w": "webpack --watch"
   },
-  "dependencies": {}
+  "dependencies": {
+    "webpack": "^3.11.0"
+  }
 }
