@@ -1,5 +1,5 @@
 1. Степан Данилов https://gitlab.com/danstopka1985/reactHomeWork
-1. Александр Минаев (с худышкой) https://github.com/troynsky/reactJs
+1. Александр Минаев https://github.com/troynsky/reactJs
 1. Рамиль Шакиров https://github.com/d31m07y1988/reactHW
 1. Александр Кузнецов https://github.com/grasshopper76/lessons
 1. Руслан Низамов https://github.com/philosovCo/home-work
