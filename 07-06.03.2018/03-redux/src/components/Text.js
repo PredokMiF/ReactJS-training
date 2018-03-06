@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from '../store/connect'
+import { connect } from 'react-redux'
 
 import { addItem } from '../store/AC'
 
 
-@connect(undefined, {
+@connect(null, {
     addItem: addItem
 })
 export class Text extends Component {
@@ -19,10 +19,10 @@ export class Text extends Component {
     }
 
     submit = () => {
-        // const addItemAction = addItem(Date.now(), this.state.text)
-        // this.context.store.dispatch(addItemAction)
         this.props.addItem(Date.now(), this.state.text)
 
+        // const addItemAction = addItem(Date.now(), this.state.text)
+        // this.context.store.dispatch(addItemAction)
         this.setState({ text: '' })
     }
 

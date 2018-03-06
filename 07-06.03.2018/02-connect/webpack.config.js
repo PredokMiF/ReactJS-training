@@ -30,7 +30,7 @@ module.exports = {
                         [ 'es2015', { 'modules': false } ],
                         'stage-0', 'react'
                     ],
-                    //plugins: ['transform-decorators-legacy'],
+                    plugins: ['transform-decorators-legacy'],
                 }
             },
             {
